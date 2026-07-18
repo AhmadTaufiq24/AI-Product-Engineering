@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: anvia
+      POSTGRES_USER: anvia
+      POSTGRES_DB: anvia
+    ports:
+        - "15435:5432"
+    volumes:
+        - ./data:/var/lib/postgresql/data
+
+volumes:
+  anviadb_data:

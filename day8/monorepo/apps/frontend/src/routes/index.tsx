@@ -22,13 +22,22 @@ function Home() {
   
   return (
     <div className='h-screen flex flex-col max-w-2xl mx-auto py-4'>
-      <div className='flex-1'>
-        <div>{messages.map((message) => {
-          return <div>{message.parts.map((p) => {
-            return p.type === 'text' ? <div className={message.role === 'user' ? 'text-right' : 'text-left'}>{p.text}</div> : ""
-          })}</div>
-        
-        })}
+      <div className="flex-1">
+        <div>
+          {messages.map((message, messageIndex) => (
+            <div key={message.id ?? messageIndex}>
+              {message.parts.map((p, partIndex) =>
+                p.type === "text" ? (
+                  <div
+                    key={partIndex}
+                    className={message.role === "user" ? "text-right" : "text-left"}
+                  >
+                    {p.text}
+                  </div>
+                ) : null
+              )}
+            </div>
+          ))}
         </div>
       </div>
       
@@ -42,7 +51,7 @@ function Home() {
             send(input);
           }}
         >
-          Stream!
+          Send
         </button>
       </div>
     </div>
